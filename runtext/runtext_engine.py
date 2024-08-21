@@ -6,7 +6,7 @@ from moviepy.editor import CompositeVideoClip, TextClip
 def create_runtext_videofile(text: str, filename: str, *,
                      duration: int = 3, text_color: str = 'white',
                      bg_color: str = 'transparent'):
-    """Create a running text video and save it as 'filename'.
+    """Create a running text video and save it as `filename`.
     
     mp4 doesn't support transparency btw."""
 
@@ -19,7 +19,7 @@ def create_runtext_videofile(text: str, filename: str, *,
     text_color = 'white' if text_color is None else text_color
     bg_color = 'transparent' if bg_color is None else bg_color
     
-    text = TextClip(text, color=text_color, size=(None, 100)) \
+    text = TextClip(text, color=text_color, bg_color=bg_color, size=(None, 100)) \
         .set_position(lambda t: (-t, 0))
     clip = CompositeVideoClip([text], (100, 100)) \
         .set_duration(text.size[0]) \
