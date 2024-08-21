@@ -1,6 +1,6 @@
 from tempfile import NamedTemporaryFile
 
-from django.http import FileResponse
+from django.http import FileResponse, HttpRequest
 # from django.shortcuts import render
 from django.conf import settings
 
@@ -15,7 +15,8 @@ def serve_demo(request):
     )
 
 
-def generate_video(request, video_text):
+def generate_video(request: HttpRequest):
+    video_text = request.GET['video_text']
     tmpfile = NamedTemporaryFile(buffering=0)
     create_runtext_videofile(video_text, tmpfile.name)
     return FileResponse(
