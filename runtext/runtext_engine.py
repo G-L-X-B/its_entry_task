@@ -3,7 +3,7 @@ from sys import argv
 from moviepy.editor import CompositeVideoClip, TextClip
 
 
-def create_runtext_videofile(text: str, filename: str, /,
+def create_runtext_videofile(text: str, filename: str, *,
                      duration: int = 3, text_color: str = 'white',
                      bg_color: str = 'transparent'):
     """Create a running text video and save it as 'filename'.
@@ -20,7 +20,8 @@ def create_runtext_videofile(text: str, filename: str, /,
     clip = CompositeVideoClip([text], (100, 100)) \
         .set_duration(text.size[0]) \
         .speedx(final_duration=duration)
-    clip.write_videofile(filename, fps = 10)
+    clip.write_videofile(filename, fps = 10, codec='libx264',
+                         ffmpeg_params=['-f', 'mp4'])
 
 
 if __name__ == '__main__':
