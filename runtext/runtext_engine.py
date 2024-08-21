@@ -3,9 +3,14 @@ from sys import argv
 from moviepy.editor import CompositeVideoClip, TextClip
 
 
+DEFAULT_DURATION = 3
+DEFAULT_TEXT_COLOR = 'white'
+DEFAULT_BG_COLOR = 'transparent'
+
+
 def create_runtext_videofile(text: str, filename: str, *,
-                     duration: int = 3, text_color: str = 'white',
-                     bg_color: str = 'transparent'):
+        duration: int = DEFAULT_DURATION, text_color: str = DEFAULT_TEXT_COLOR,
+        bg_color: str = DEFAULT_BG_COLOR):
     """Create a running text video and save it as `filename`.
     
     mp4 doesn't support transparency btw."""
@@ -15,9 +20,9 @@ def create_runtext_videofile(text: str, filename: str, *,
     if not isinstance(filename, str) or len(filename) == 0:
         raise TypeError('`filename` must be a non-empty string.')
     
-    duration = 3 if duration is None else duration
-    text_color = 'white' if text_color is None else text_color
-    bg_color = 'transparent' if bg_color is None else bg_color
+    duration = DEFAULT_DURATION if duration is None else int(duration)
+    text_color = DEFAULT_TEXT_COLOR if text_color is None else text_color
+    bg_color = DEFAULT_BG_COLOR if bg_color is None else bg_color
     
     text = TextClip(text, color=text_color, bg_color=bg_color, size=(None, 100)) \
         .set_position(lambda t: (-t, 0))
