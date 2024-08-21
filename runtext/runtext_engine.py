@@ -15,6 +15,10 @@ def create_runtext_videofile(text: str, filename: str, *,
     if not isinstance(filename, str) or len(filename) == 0:
         raise TypeError('`filename` must be a non-empty string.')
     
+    duration = 3 if duration is None else duration
+    text_color = 'white' if text_color is None else text_color
+    bg_color = 'transparent' if bg_color is None else bg_color
+    
     text = TextClip(text, color=text_color, size=(None, 100)) \
         .set_position(lambda t: (-t, 0))
     clip = CompositeVideoClip([text], (100, 100)) \
