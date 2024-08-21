@@ -1,6 +1,7 @@
 from django.urls import path
-from runtext import views
+from . import views
 
 urlpatterns = [
-    path('', views.index, name='index')
+    path('<str:video_text>', views.generate_video),
+    path('demo', views.serve_demo, name='demo'),
 ]
