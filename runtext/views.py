@@ -18,7 +18,10 @@ def serve_demo(request):
 def generate_video(request: HttpRequest):
     video_text = request.GET['video_text']
     tmpfile = NamedTemporaryFile(buffering=0)
-    create_runtext_videofile(video_text, tmpfile.name)
+    create_runtext_videofile(video_text, tmpfile.name,
+                             duration=request.GET.get('duration'),
+                             text_color=request.GET.get('text_color'),
+                             bg_color=request.GET.get('bg_color'))
     return FileResponse(
         tmpfile,
         as_attachment=True,
