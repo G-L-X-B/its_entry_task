@@ -1,22 +1,30 @@
 from tempfile import NamedTemporaryFile
+from urllib.parse import urlencode
 
 from django.conf import settings
 from django.http import FileResponse, HttpRequest
-# from django.shortcuts import render
-
+from django.shortcuts import redirect
+from django.urls import reverse
 
 from .models import Generation, Request
 
+from . import runtext_engine as engine
 from .runtext_engine import create_runtext_videofile
 
 
 def serve_demo(request):
     Request.objects.create(request_type=Request.DEMO)
-    return FileResponse(
-        open(settings.BASE_DIR / 'Hello, brotha!.mp4', 'rb'),
-        as_attachment=True,
-        filename='Hello, brotha!.mp4'
+    url = '{}?{}'.format(
+        reverse('create'),
+        urlencode(dict(
+                video_text='This is a demo runing text video',
+                duration=engine.DEFAULT_DURATION,
+                text_color=engine.DEFAULT_TEXT_COLOR,
+                bg_color=engine.DEFAULT_BG_COLOR
+            )
+        )
     )
+    return redirect(url)
 
 
 def create_video(request: HttpRequest):
