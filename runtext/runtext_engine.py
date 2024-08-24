@@ -5,7 +5,7 @@ from moviepy.editor import CompositeVideoClip, TextClip
 
 DEFAULT_DURATION = 3
 DEFAULT_TEXT_COLOR = 'white'
-DEFAULT_BG_COLOR = 'transparent'
+DEFAULT_BG_COLOR = 'black'
 
 
 def create_runtext_videofile(text: str, filename: str, *,
