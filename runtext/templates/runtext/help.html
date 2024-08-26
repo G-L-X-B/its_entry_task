@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>Runtext reference page</title>
+  </head>
+  <body>
+    <h3>How to use the runtext api?</h3>
+    <p>Send a GET request to {{ create }} and supply some of the following arguments:</p>
+    <dl>
+        <dt>video_text (required)</dt>
+        <dd>Text to animate;</dd>
+        <dt>duration (optional)</dt>
+        <dd>Duration of video in seconds, defaults to {{ default_duration }} seconds;</dd>
+        <dt>text_color (optional)</dt>
+        <dd>Color of the text, defaults to {{ default_text_color }};</dd>
+        <dt>bg_color (optional)</dt>
+        <dd>Color of the background, defaults to {{ default_bg_color }}.</dd>
+    </dl>
+    <p>For all possible color values and limitations, refer to the <a href="https://imagemagick.org/script/color.php">ImageMagick color reference</a>.</p>
+    <p>With this, you can recreate the demo at <a href="{{ demo_link }}">{{ demo_link }}</a><br/>with <a href="{{ create_demo_link }}">{{ create_demo_link }}.</a></p>
+  </body>
+</html>
