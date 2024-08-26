@@ -24,6 +24,7 @@ def _create_default_link(request):
         )
     )
 
+
 def serve_demo(request):
     Request.objects.create(request_type=Request.DEMO)
     return redirect(_create_default_link(request))

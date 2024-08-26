@@ -24,10 +24,10 @@ def create_runtext_videofile(text: str, filename: str, *,
     text_color = DEFAULT_TEXT_COLOR if text_color is None else text_color
     bg_color = DEFAULT_BG_COLOR if bg_color is None else bg_color
     
-    text = TextClip(text, color=text_color, bg_color=bg_color, size=(None, 100)) \
+    text_clip = TextClip(text, color=text_color, bg_color=bg_color, size=(None, 100)) \
         .set_position(lambda t: (-t, 0))
-    clip = CompositeVideoClip([text], (100, 100)) \
-        .set_duration(text.size[0]) \
+    clip = CompositeVideoClip([text_clip], (100, 100)) \
+        .set_duration(text_clip.size[0] - 100) \
         .speedx(final_duration=duration)
     clip.write_videofile(filename, fps = 10, codec='libx264',
                          ffmpeg_params=['-f', 'mp4'])
