@@ -26,10 +26,10 @@ def create_runtext_videofile(text: str, filename: str, *,
     
     text_clip = TextClip(text, color=text_color, bg_color=bg_color, size=(None, 100)) \
         .set_position(lambda t: (-t, 0))
+    text_clip = text_clip.set_duration(text_clip.size[0] - 100)
     clip = CompositeVideoClip([text_clip], (100, 100)) \
-        .set_duration(text_clip.size[0] - 100) \
         .speedx(final_duration=duration)
-    clip.write_videofile(filename, fps = 10, codec='libx264',
+    clip.write_videofile(filename, fps = 30, codec='libx264',
                          ffmpeg_params=['-f', 'mp4'])
 
 
