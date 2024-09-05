@@ -58,7 +58,7 @@ def create_video(request: HttpRequest):
 
 def _check_creation_options(options: dict):
     duration = options.get('duration')
-    if duration is None or int(duration) < 1:
+    if duration is not None and int(duration) < 1:
         return 'duration'
     return None
 
