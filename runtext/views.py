@@ -64,6 +64,7 @@ def _check_creation_options(options: dict):
 
 
 def help_page(request: HttpRequest):
+    Request.objects.create(request_type=Request.HELP)
     return render(request, 'runtext/help.html', {
                     'create': request.build_absolute_uri(reverse('create')),
                     'default_duration': engine.DEFAULT_DURATION,

@@ -13,9 +13,11 @@ class Generation(models.Model):
 class Request(models.Model):
     DEMO = 'demo'
     CREATE = 'create'
+    HELP = 'help'
     REQUEST_TYPE_CHOICES = {
         DEMO: 'Show Demo',
-        CREATE: 'Create Video'
+        CREATE: 'Create Video',
+        HELP: 'Help Page',
     }
     request_type = models.CharField(max_length=32, choices=REQUEST_TYPE_CHOICES)
     timestamp = models.DateTimeField(auto_now_add=True)
