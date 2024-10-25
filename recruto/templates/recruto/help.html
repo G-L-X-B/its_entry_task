@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Recruto help page</title>
+  </head>
+  <body>
+    {% if error %}
+    <h2>Ошибка: отсутствует параметр {{ absent_name }}!</h2>
+    {% endif %}
+    <p>Проверьте параметры запроса:</p>
+    <dl>
+      <dt>name</dt>
+      <dd>Имя;</dd>
+      <dt>message</dt>
+      <dd>Сообщение после приветствия.</dd>
+    </dl>
+  </body>
+</html>
